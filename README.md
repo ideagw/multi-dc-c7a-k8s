@@ -40,23 +40,29 @@ statefulset "cassandraa" created
 
 # kubectl -n c7a get pods
 NAME           READY     STATUS              RESTARTS   AGE
+
 cassandraa-0   0/1       ContainerCreating   0          59s
 
 # kubectl -n c7a describe pod cassandraa-0
 
 # kubectl -n c7a get pods
 NAME           READY     STATUS    RESTARTS   AGE
+
 cassandraa-0   1/1       Running   0          1m
 
 # kubectl -n c7a create -f statefulset-b.yaml
 
 # kubectl -n c7a get statefulsets
 NAME         DESIRED   CURRENT   AGE
+
 cassandraa   1         1         3m
+
 cassandrab   1         1         23s
 
 # kubectl -n c7a get pods -o wide
 NAME           READY     STATUS    RESTARTS   AGE       IP          NODE
+
 cassandraa-0   1/1       Running   0          7m        10.32.0.3   kube-vm0
+
 cassandrab-0   1/1       Running   0          7s        10.44.0.1   kube-vm1
 
