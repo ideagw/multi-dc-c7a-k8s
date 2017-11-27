@@ -133,3 +133,15 @@ UN  10.44.0.2  103.29 KiB  256          32.3%             0292512e-f698-458b-b28
 UN  10.44.0.3  84.25 KiB  256          32.9%             254ce3d5-455a-4176-a8c1-0468ba8baefe  Rack1
 </pre>
 
+# kubectl -n c7a get pvc
+<pre>
+NAME                          STATUS    VOLUME             CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+cassandra-data-cassandraa-0   Bound     cassandra-data-a   10Gi       RWO                           21m
+cassandra-data-cassandraa-1   Bound     cassandra-data-b   10Gi       RWO                           7m
+cassandra-data-cassandraa-2   Bound     cassandra-data-f   10Gi       RWO                           7m
+cassandra-data-cassandrab-0   Bound     cassandra-data-d   10Gi       RWO                           18m
+cassandra-data-cassandrab-1   Bound     cassandra-data-c   10Gi       RWO                           6m
+cassandra-data-cassandrab-2   Bound     cassandra-data-e   10Gi       RWO                           6m
+</pre>
+
+
