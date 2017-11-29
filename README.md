@@ -133,6 +133,13 @@ UN  10.44.0.2  103.29 KiB  256          32.3%             0292512e-f698-458b-b28
 UN  10.44.0.3  84.25 KiB  256          32.9%             254ce3d5-455a-4176-a8c1-0468ba8baefe  Rack1
 </pre>
 
+# kubectl -n c7a get ep
+<pre>
+NAME         ENDPOINTS                                      AGE
+cassandraa   10.32.0.3:9042,10.32.0.4:9042,10.32.0.5:9042   2m
+cassandrab   10.44.0.1:9042,10.44.0.2:9042,10.44.0.3:9042   2m
+</pre>
+
 # kubectl -n c7a get pvc
 <pre>
 NAME                          STATUS    VOLUME             CAPACITY   ACCESS MODES   STORAGECLASS   AGE
