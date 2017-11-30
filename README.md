@@ -167,10 +167,9 @@ Use HELP for help.
 cqlsh> create keyspace hr_keyspace with replication ={'class' : 'NetworkTopologyStrategy', 'DC1':2, 'DC2':2};
 cqlsh> use hr_keyspace;
 cqlsh> CREATE TABLE employee( emp_id int PRIMARY KEY, emp_name text, emp_city text, emp_sal varint, emp_phone varint);
-
+#For asynchronous writes to other data center, set the consistency level to LOCAL_QUORUM
 cqlsh:hr_keyspace> consistency LOCAL_QUORUM
 Consistency level set to LOCAL_QUORUM.
-cqlsh:hr_keyspace> 
 cqlsh:hr_keyspace> 
 cqlsh:hr_keyspace> consistency     
 Current consistency level is LOCAL_QUORUM.
@@ -178,14 +177,7 @@ cqlsh:hr_keyspace>
 
 
 cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(1,'David', 'San Francisco', 50000, 983210987);
-cqlsh:hr_keyspace> 
-cqlsh:hr_keyspace> 
-cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(2,'Robin', 'San Jose', 55000, 9848022339);    
-cqlsh:hr_keyspace> 
-cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(3,'Bob', 'Austin', 45000, 9848022330);
-cqlsh:hr_keyspace> 
-cqlsh:hr_keyspace> 
-cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(2,'Robin', 'San Jose', 55000, 9848022339); cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(3,'Bob', 'Austin', 45000, 9848022330);
 cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(4, 'Monica','San Jose', 55000, 9458022330);
 cqlsh:hr_keyspace> 
 cqlsh:hr_keyspace> 
