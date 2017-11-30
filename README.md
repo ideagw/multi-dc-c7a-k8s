@@ -151,4 +151,90 @@ cassandra-data-cassandrab-1   Bound     cassandra-data-c   10Gi       RWO       
 cassandra-data-cassandrab-2   Bound     cassandra-data-e   10Gi       RWO                           6m
 </pre>
 
+# kubectl -n c7a exec -ti cassandraa-0 -- cqlsh
+<pre>
+Connected to Cassandra at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.11.1 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> create keyspace hr_keyspace with replication ={'class' : 'NetworkTopologyStrategy', 'DC1':2, 'DC2':2};
+cqlsh> use hr_keyspace;
+cqlsh> CREATE TABLE employee( emp_id int PRIMARY KEY, emp_name text, emp_city text, emp_sal varint, emp_phone varint);
 
+
+cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(1,'David', 'San Francisco', 50000, 983210987);
+cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(2,'Robin', 'San Jose', 55000, 9848022339);    
+cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(3,'Bob', 'Austin', 45000, 9848022330);
+cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> INSERT INTO employee (emp_id, emp_name, emp_city,emp_sal,emp_phone) VALUES(4, 'Monica','San Jose', 55000, 9458022330);
+cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> select * from employee;
+
+ emp_id | emp_city      | emp_name | emp_phone  | emp_sal
+--------+---------------+----------+------------+---------
+      1 | San Francisco |    David |  983210987 |   50000
+      2 |      San Jose |    Robin | 9848022339 |   55000
+      4 |      San Jose |   Monica | 9458022330 |   55000
+      3 |        Austin |      Bob | 9848022330 |   45000
+
+cqlsh:hr_keyspace> quit;
+root@kube-vm0:/home/ubuntu/multi-dc-c7a-k8s# 
+root@kube-vm0:/home/ubuntu/multi-dc-c7a-k8s# 
+root@kube-vm0:/home/ubuntu/multi-dc-c7a-k8s# 
+root@kube-vm0:/home/ubuntu/multi-dc-c7a-k8s# kubectl -n c7a exec -ti cassandrab-1 -- cqlsh
+Connected to Cassandra at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.11.1 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> 
+cqlsh> 
+cqlsh> use hr_keyspace;
+cqlsh:hr_keyspace> 
+cqlsh:hr_keyspace> select * from employee;
+
+ emp_id | emp_city      | emp_name | emp_phone  | emp_sal
+--------+---------------+----------+------------+---------
+      1 | San Francisco |    David |  983210987 |   50000
+      2 |      San Jose |    Robin | 9848022339 |   55000
+      4 |      San Jose |   Monica | 9458022330 |   55000
+      3 |        Austin |      Bob | 9848022330 |   45000
+
+(4 rows)
+cqlsh:hr_keyspace> 
+
+
+</pre>
+
+# kubectl -n c7a delete statefulset cassandraa
+statefulset "cassandraa" deleted
+
+# kubectl -n c7a exec -ti cassandrab-1 -- cqlsh
+<pre>
+Connected to Cassandra at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.11.1 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> use hr_keyspace;
+cqlsh:hr_keyspace> select * from employee;
+
+ emp_id | emp_city      | emp_name | emp_phone  | emp_sal
+--------+---------------+----------+------------+---------
+      1 | San Francisco |    David |  983210987 |   50000
+      2 |      San Jose |    Robin | 9848022339 |   55000
+      4 |      San Jose |   Monica | 9458022330 |   55000
+      3 |        Austin |      Bob | 9848022330 |   45000
+
+(4 rows)
+cqlsh:hr_keyspace> quit;
+</pre>
+
+# kubectl -n c7a get pods -o wide
+<pre>
+NAME           READY     STATUS    RESTARTS   AGE       IP          NODE
+cassandrab-0   1/1       Running   0          1h        10.44.0.1   kube-vm1
+cassandrab-1   1/1       Running   0          1h        10.44.0.2   kube-vm1
+cassandrab-2   1/1       Running   0          1h        10.44.0.3   kube-vm1
+</pre>
