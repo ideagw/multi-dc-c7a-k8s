@@ -27,8 +27,10 @@ kube-vm1   Ready     <none>    8m        v1.8.4    beta.kubernetes.io/arch=amd64
 cd mu*
 
 # kubectl -n c7a create -f service.yaml
+<pre>
 service "cassandraa" created
 service "cassandrab" created
+<pre>
 
 # kubectl -n c7a create -f local_pvs.yaml
 <pre>
@@ -62,7 +64,7 @@ cassandraa-0   1/1       Running   0          1m
 # kubectl -n c7a create -f statefulset-b.yaml
 
 # kubectl -n c7a get statefulsets
-</pre>
+<pre>
 NAME         DESIRED   CURRENT   AGE
 cassandraa   1         1         3m
 cassandrab   1         1         23s
