@@ -4,12 +4,13 @@ kind: StatefulSet
 metadata:
   name: cassandraa
 spec:
-  serviceName: cassandra
+  serviceName: cassandraa
   replicas: 1
   template:
     metadata:
       labels:
         app: cassandra
+        interface: cassandraa
     spec:
       affinity:
         nodeAffinity:
@@ -35,7 +36,7 @@ spec:
               name: cql
           env:
             - name: CASSANDRA_SEEDS
-              value: cassandraa-0.cassandra.c7a.svc.cluster.local,cassandrab-0.cassandra.c7a.svc.cluster.local
+              value: cassandraa-0.cassandraa.c7a.svc.cluster.local,cassandrab-0.cassandrab.c7a.svc.cluster.local
             - name: MAX_HEAP_SIZE
               value: 256M
             - name: HEAP_NEWSIZE
@@ -60,5 +61,5 @@ spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
-            storage: 10Gi
+            storage: 5Gi
           # or specify which StorageClass
