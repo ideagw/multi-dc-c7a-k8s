@@ -30,7 +30,7 @@ cd mu*
 <pre>
 service "cassandraa" created
 service "cassandrab" created
-<pre>
+</pre>
 
 # kubectl -n c7a create -f local_pvs.yaml
 <pre>
