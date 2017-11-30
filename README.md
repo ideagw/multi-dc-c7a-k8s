@@ -216,7 +216,7 @@ cqlsh:hr_keyspace>
 
 
 </pre>
-
+# Simulate site failure
 # kubectl -n c7a delete statefulset cassandraa
 statefulset "cassandraa" deleted
 
