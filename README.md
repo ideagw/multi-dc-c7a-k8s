@@ -30,12 +30,14 @@ cd mu*
 service "cassandra" created
 
 # kubectl -n c7a create -f local_pvs.yaml
+<pre>
 persistentvolume "cassandra-data-a" created
 persistentvolume "cassandra-data-b" created
 persistentvolume "cassandra-data-c" created
 persistentvolume "cassandra-data-d" created
 persistentvolume "cassandra-data-e" created
 persistentvolume "cassandra-data-f" created
+</pre>
 
 # kubectl -n c7a create -f statefulset-a.yaml
 <pre>
