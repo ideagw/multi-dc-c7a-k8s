@@ -38,7 +38,9 @@ persistentvolume "cassandra-data-e" created
 persistentvolume "cassandra-data-f" created
 
 # kubectl -n c7a create -f statefulset-a.yaml
+<pre>
 statefulset "cassandraa" created
+</pre>
 
 # kubectl -n c7a get pods
 <pre>
@@ -57,6 +59,7 @@ cassandraa-0   1/1       Running   0          1m
 # kubectl -n c7a create -f statefulset-b.yaml
 
 # kubectl -n c7a get statefulsets
+</pre>
 NAME         DESIRED   CURRENT   AGE
 cassandraa   1         1         3m
 cassandrab   1         1         23s
