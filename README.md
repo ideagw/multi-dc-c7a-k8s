@@ -27,7 +27,8 @@ kube-vm1   Ready     <none>    8m        v1.8.4    beta.kubernetes.io/arch=amd64
 cd mu*
 
 # kubectl -n c7a create -f service.yaml
-service "cassandra" created
+service "cassandraa" created
+service "cassandrab" created
 
 # kubectl -n c7a create -f local_pvs.yaml
 <pre>
