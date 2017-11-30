@@ -22,7 +22,7 @@ kube-vm1   Ready     <none>    8m        v1.8.4    beta.kubernetes.io/arch=amd64
 
 # kubectl create namespace c7a
 
-#git clone https://github.com/rakeshJn/multi-dc-c7a-k8s.git
+#git clone https://github.com/ideagw/multi-dc-c7a-k8s.git
 
 cd mu*
 
