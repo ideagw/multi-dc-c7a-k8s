@@ -1,5 +1,7 @@
 # multi-dc-c7a-k8s
 
+These instructions are tested on Kubernetes version 1.8.4 and 1.8.5. StatefulSets in 1.8.x are in beta. In Kubernetes version 1.9, StatefulSets are stable GA. While same instructions work for 1.9, you are encouraged to change the StatefulSet api version to stable (apps/v1).
+
 kubectl get nodes
 <pre>
 NAME       STATUS    ROLES     AGE       VERSION
