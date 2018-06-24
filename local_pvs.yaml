@@ -76,7 +76,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: /data1/cass/cassandra-data-e
+    path: /data/cass/cassandra-data-e
   persistentVolumeReclaimPolicy: Recycle
 ---
 apiVersion: v1
